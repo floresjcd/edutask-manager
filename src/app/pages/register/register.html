@@ -1,0 +1,33 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2>Criar Conta</h2>
+    <p>Junte-se ao EduTask Manager</p>
+    
+    <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+      <div class="form-group">
+        <label for="name">Nome Completo</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" required placeholder="Seu nome">
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" required placeholder="seu@email.com">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="6" placeholder="Mínimo 6 caracteres">
+      </div>
+      
+      <div *ngIf="error" class="error-message">
+        {{ error }}
+      </div>
+      
+      <button type="submit" [disabled]="!registerForm.form.valid">Cadastrar</button>
+    </form>
+    
+    <div class="auth-footer">
+      Já tem uma conta? <a routerLink="/login">Faça login</a>
+    </div>
+  </div>
+</div>

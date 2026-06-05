@@ -1,0 +1,27 @@
+<div class="task-list">
+  <div *ngIf="tasks.length === 0" class="empty-state">
+    Nenhuma tarefa encontrada. Comece criando uma!
+  </div>
+
+  <div *ngFor="let task of tasks" class="task-item" [class.completed]="task.completed">
+    <div class="task-checkbox">
+      <input type="checkbox" [checked]="task.completed" (change)="toggleTask.emit(task)">
+    </div>
+    
+    <div class="task-info">
+      <h4>{{ task.title }}</h4>
+      <p>{{ task.description }}</p>
+      <div class="task-meta">
+        <span class="due-date">📅 {{ task.dueDate }}</span>
+        <span class="category-badge" [style.background-color]="getCategoryColor(task.categoryId)">
+          {{ getCategoryName(task.categoryId) }}
+        </span>
+      </div>
+    </div>
+    
+    <div class="task-actions">
+      <button (click)="editTask.emit(task)" class="btn-edit">Editar</button>
+      <button (click)="deleteTask.emit(task.id)" class="btn-delete">Excluir</button>
+    </div>
+  </div>
+</div>

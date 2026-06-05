@@ -1,0 +1,38 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <div class="header-content">
+      <h1>EduTask Manager</h1>
+      <div class="user-info">
+        <span>Olá, <strong>{{ userName }}</strong></span>
+        <button (click)="logout()" class="btn-logout">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-content">
+    <div class="sidebar">
+      <app-task-form 
+        [categories]="categories" 
+        [taskToEdit]="selectedTask"
+        (taskSaved)="onTaskSaved($event)"
+        (cancelEdit)="onCancelEdit()">
+      </app-task-form>
+
+      <app-category-manager
+        [categories]="categories"
+        (categorySaved)="onCategorySaved($event)"
+        (categoryDeleted)="onCategoryDeleted($event)">
+      </app-category-manager>
+    </div>
+    
+    <div class="main-content">
+      <app-task-list 
+        [tasks]="tasks" 
+        [categories]="categories"
+        (toggleTask)="onTaskToggle($event)"
+        (editTask)="onTaskEdit($event)"
+        (deleteTask)="onTaskDelete($event)">
+      </app-task-list>
+    </div>
+  </main>
+</div>

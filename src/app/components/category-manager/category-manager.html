@@ -1,0 +1,33 @@
+<div class="card category-manager">
+  <h3>{{ editingCategory ? 'Editar Categoria' : 'Gerenciar Categorias' }}</h3>
+  
+  <form (ngSubmit)="onSave()" class="category-form">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newCategoryName" name="name" placeholder="Nome da categoria" required>
+    </div>
+    <div class="form-group color-picker">
+      <input type="color" [(ngModel)]="newCategoryColor" name="color">
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn-primary">
+        {{ editingCategory ? 'Atualizar' : 'Adicionar' }}
+      </button>
+      <button *ngIf="editingCategory" type="button" (click)="resetForm()" class="btn-cancel">
+        Cancelar
+      </button>
+    </div>
+  </form>
+
+  <div class="category-list">
+    <div *ngFor="let cat of categories" class="category-item">
+      <div class="cat-info">
+        <span class="color-dot" [style.background]="cat.color"></span>
+        <span>{{ cat.name }}</span>
+      </div>
+      <div class="cat-actions">
+        <button (click)="onEdit(cat)" class="btn-icon-edit" title="Editar">✎</button>
+        <button (click)="onDelete(cat.id)" class="btn-icon-delete" title="Excluir">×</button>
+      </div>
+    </div>
+  </div>
+</div>
